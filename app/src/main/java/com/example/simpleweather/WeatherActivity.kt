@@ -19,10 +19,10 @@ class WeatherActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather)
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        setViewsOverlaps(toolBarWeather)
+        setViewOverlaps(toolBarWeather)
     }
 
-    private fun setViewsOverlaps(view: View){
+    private fun setViewOverlaps(view: View){
         ViewCompat.setOnApplyWindowInsetsListener(view) { v, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
 

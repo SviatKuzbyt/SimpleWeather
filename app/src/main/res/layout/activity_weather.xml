@@ -9,17 +9,23 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/gray">
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolBarWeather"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_scrollFlags="noScroll"/>
+            app:layout_scrollFlags="noScroll"
+            app:navigationIcon="@drawable/menu"
+            app:titleTextAppearance="@style/textToolBarWeather"
+            />
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentWeather"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll"/>
+            app:layout_scrollFlags="scroll"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="32dp"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView

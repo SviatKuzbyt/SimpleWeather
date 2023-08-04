@@ -13,17 +13,15 @@ class MainInfoFragment : Fragment(R.layout.fragment_main_info) {
     private lateinit var textTemp: TextView
     private lateinit var textDescription: TextView
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         weatherIcon = view.findViewById(R.id.weatherIcon)
         textTemp = view.findViewById(R.id.textTemp)
         textDescription = view.findViewById(R.id.textDescription)
-    }
 
-    @SuppressLint("SetTextI18n")
-    fun setViews(icon: Int, temp: String, description: String){
-        weatherIcon.setImageResource(icon)
-        textTemp.text = "$temp ℃"
-        textDescription.text = description
+        arguments?.let { weatherIcon.setImageResource(it.getInt("icon")) }
+        textTemp.text = "${arguments?.getString("temp")} ℃"
+        textDescription.text = arguments?.getString("description") ?: "none"
     }
 }

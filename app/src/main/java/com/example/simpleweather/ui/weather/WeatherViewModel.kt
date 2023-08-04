@@ -20,7 +20,7 @@ class WeatherViewModel(application: Application): AndroidViewModel(application) 
     private val loadWeather = LoadWeather()
     val mode = MutableLiveData<ActivityMode>()
     val city = MutableLiveData<String>()
-    val weatherInfo = MutableLiveData<WeatherInfo>()
+    var weatherInfo: WeatherInfo? = null
 
     init {
         setCity("Sambir")
@@ -30,13 +30,11 @@ class WeatherViewModel(application: Application): AndroidViewModel(application) 
     @SuppressLint("NullSafeMutableLiveData")
     fun loadWeather() = viewModelScope.launch(Dispatchers.IO){
         mode.postValue(ActivityMode.Load)
-        val result = loadWeather.getWeather(city.value ?: "")
-        if(result == null)
+        weatherInfo = loadWeather.getWeather(city.value ?: "")
+        if(weatherInfo == null)
             mode.postValue(ActivityMode.Error)
-        else{
-            weatherInfo.postValue(result)
+        else
             mode.postValue(ActivityMode.MainInfo)
-        }
     }
 
     fun setCity(name: String){

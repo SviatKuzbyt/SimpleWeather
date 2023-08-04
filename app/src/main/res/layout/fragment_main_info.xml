@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.weather.fragments.MainInfoFragment"
-    android:background="@android:color/transparent">
+    android:background="@android:color/transparent"
+    android:id="@+id/fragmentMain">
 
     <ImageView
         android:id="@+id/weatherIcon"

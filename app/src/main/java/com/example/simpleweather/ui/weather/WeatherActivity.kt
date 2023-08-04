@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.simpleweather.R
 import com.example.simpleweather.ui.elements.DetailAdapter
 import com.example.simpleweather.ui.weather.fragments.ErrorFragment
@@ -27,6 +28,7 @@ class WeatherActivity : AppCompatActivity() {
     private val infoWeatherList: RecyclerView by lazy { findViewById(R.id.infoWeatherList) }
     private lateinit var viewModel: WeatherViewModel
     private val head: View by lazy { findViewById(R.id.head) }
+    private val refresh: SwipeRefreshLayout by lazy { findViewById(R.id.refresh) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,8 +65,15 @@ class WeatherActivity : AppCompatActivity() {
 
                     infoWeatherList.layoutManager = LinearLayoutManager(this)
                     infoWeatherList.adapter = DetailAdapter(res.detail, this)
+                    infoWeatherList.visibility = View.VISIBLE
                 }
             }
+        }
+
+        refresh.setOnRefreshListener {
+            viewModel.loadWeather()
+            infoWeatherList.visibility = View.INVISIBLE
+            refresh.isRefreshing = false
         }
 
     }

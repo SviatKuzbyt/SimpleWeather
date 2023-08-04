@@ -1,4 +1,4 @@
-package com.example.simpleweather
+package com.example.simpleweather.ui.weather
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
+import com.example.simpleweather.R
 import com.google.android.material.appbar.AppBarLayout
 
 class WeatherActivity : AppCompatActivity() {

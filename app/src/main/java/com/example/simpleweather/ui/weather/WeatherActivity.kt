@@ -12,7 +12,10 @@ import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.simpleweather.R
+import com.example.simpleweather.ui.elements.DetailAdapter
 import com.example.simpleweather.ui.weather.fragments.ErrorFragment
 import com.example.simpleweather.ui.weather.fragments.LoadFragment
 import com.example.simpleweather.ui.weather.fragments.MainInfoFragment
@@ -21,7 +24,9 @@ import com.example.simpleweather.ui.weather.fragments.MainInfoFragment
 class WeatherActivity : AppCompatActivity() {
 
     private val toolBarWeather: Toolbar by lazy { findViewById(R.id.toolBarWeather) }
+    private val infoWeatherList: RecyclerView by lazy { findViewById(R.id.infoWeatherList) }
     private lateinit var viewModel: WeatherViewModel
+    private val head: View by lazy { findViewById(R.id.head) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +55,14 @@ class WeatherActivity : AppCompatActivity() {
 
                     fragment.arguments = bundle
                     postFragment(fragment)
+
+                    val background =
+                        if(res.main.clearBackground) R.drawable.background_clear
+                        else R.drawable.background_cloudy
+                    head.setBackgroundResource(background)
+
+                    infoWeatherList.layoutManager = LinearLayoutManager(this)
+                    infoWeatherList.adapter = DetailAdapter(res.detail, this)
                 }
             }
         }

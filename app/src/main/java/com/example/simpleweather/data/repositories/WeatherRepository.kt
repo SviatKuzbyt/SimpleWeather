@@ -9,7 +9,7 @@ import org.json.JSONObject
 import java.net.URL
 import java.util.Locale
 
-class LoadWeather {
+class WeatherRepository {
     fun getWeather(city: String): WeatherInfo? {
         return try {
             formatInfo(loadInfo(city))
@@ -26,7 +26,7 @@ class LoadWeather {
 
     private fun formatInfo(text: String): WeatherInfo {
         val main = InfoMain()
-        val info = InfoDetail()
+        val info = mutableListOf<InfoDetail>()
 
         val jsonObject = JSONObject(text)
 
@@ -40,23 +40,23 @@ class LoadWeather {
 
         val mainObject = jsonObject.getJSONObject("main")
         main.temp = mainObject.getString("temp")
-        info.tempFeel = mainObject.getString("feels_like")
-        info.pressure = mainObject.getString("pressure")
-        info.humidity = mainObject.getString("humidity")
+        info.add(InfoDetail(R.string.tempFeel, mainObject.getString("feels_like") + " ℃"))
+        info.add(InfoDetail(R.string.pressure, mainObject.getString("pressure") + " hPa"))
+        info.add(InfoDetail(R.string.humidity, mainObject.getString("humidity") + " %"))
 
-        info.visibility = jsonObject.optString("visibility", "")
+        info.add(InfoDetail(R.string.visibility ,jsonObject.getString("visibility") + " m"))
 
         val windObject = jsonObject.getJSONObject("wind")
-        info.windSpeed = windObject.getString("speed")
+        info.add(InfoDetail(R.string.windSpeed, windObject.getString("speed") + " m/s"))
 
         val cloudsObject = jsonObject.getJSONObject("clouds")
-        info.clouds = cloudsObject.getString("all")
+        info.add(InfoDetail(R.string.clouds, cloudsObject.getString("all") + " %"))
 
         val rainObject = jsonObject.optJSONObject("rain")
-        info.rain = rainObject?.optString("1h", "-") ?: "-"
+        info.add(InfoDetail(R.string.rain, rainObject?.optString("1h", "-" + " %") ?: "-"))
 
         val snowObject = jsonObject.optJSONObject("snow")
-        info.snow = snowObject?.optString("1h", "-") ?: "-"
+        info.add(InfoDetail(R.string.snow, snowObject?.optString("1h", "-" + " %") ?: "-"))
 
         return WeatherInfo(main, info)
     }

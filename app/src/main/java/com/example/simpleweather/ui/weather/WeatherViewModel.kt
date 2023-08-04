@@ -6,7 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.simpleweather.data.WeatherInfo
-import com.example.simpleweather.data.repositories.LoadWeather
+import com.example.simpleweather.data.repositories.WeatherRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -17,7 +17,7 @@ sealed class ActivityMode(){
 }
 
 class WeatherViewModel(application: Application): AndroidViewModel(application) {
-    private val loadWeather = LoadWeather()
+    private val weatherRepository = WeatherRepository()
     val mode = MutableLiveData<ActivityMode>()
     val city = MutableLiveData<String>()
     var weatherInfo: WeatherInfo? = null
@@ -30,7 +30,7 @@ class WeatherViewModel(application: Application): AndroidViewModel(application) 
     @SuppressLint("NullSafeMutableLiveData")
     fun loadWeather() = viewModelScope.launch(Dispatchers.IO){
         mode.postValue(ActivityMode.Load)
-        weatherInfo = loadWeather.getWeather(city.value ?: "")
+        weatherInfo = weatherRepository.getWeather(city.value ?: "")
         if(weatherInfo == null)
             mode.postValue(ActivityMode.Error)
         else

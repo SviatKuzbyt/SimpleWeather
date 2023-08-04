@@ -5,4 +5,13 @@
     <string name="load">Завантаження…</string>
     <string name="error">Помилка завантаження</string>
     <string name="error_content">Перевірте з\'єднання з інтернетом або повторіть спробу пізніше</string>
+    <string name="detail">Детальніше</string>
+    <string name="tempFeel">Відчувається як:</string>
+    <string name="windSpeed">Швидкість вітру:</string>
+    <string name="pressure">Тиск:</string>
+    <string name="humidity">Вологість:</string>
+    <string name="visibility">Видимість:</string>
+    <string name="clouds">Хмарність:</string>
+    <string name="rain">Опади:</string>
+    <string name="snow">Сніг:</string>
 </resources>

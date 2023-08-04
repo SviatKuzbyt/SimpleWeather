@@ -4,7 +4,7 @@ import com.example.simpleweather.R
 
 data class WeatherInfo(
     val main: InfoMain,
-    val detail: InfoDetail
+    val detail: List<InfoDetail>
 )
 
 data class InfoMain(
@@ -15,12 +15,6 @@ data class InfoMain(
 )
 
 data class InfoDetail(
-    var tempFeel: String = "-",
-    var windSpeed: String = "-",
-    var pressure: String = "-",
-    var humidity: String = "-",
-    var visibility: String = "-",
-    var clouds: String = "-",
-    var rain: String = "-",
-    var snow: String = "-",
+    val label: Int,
+    val value: String
 )

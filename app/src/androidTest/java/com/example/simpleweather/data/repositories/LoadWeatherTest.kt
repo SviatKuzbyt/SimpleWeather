@@ -5,12 +5,12 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.junit.Test
 
-class WeatherRepositoryTest{
-    private val weatherRepository = WeatherRepository()
+class LoadWeatherTest{
+    private val loadWeather = LoadWeather()
     @Test
     fun testLoadInfo() = runBlocking {
         withContext(Dispatchers.IO){
-            val result = weatherRepository.getWeather("самбір")
+            val result = loadWeather.getWeather("самбір")
             println(result)
         }
     }

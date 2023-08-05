@@ -9,7 +9,7 @@ import org.json.JSONObject
 import java.net.URL
 import java.util.Locale
 
-class WeatherRepository {
+class LoadWeather {
     fun getWeather(city: String): WeatherInfo? {
         return try {
             formatInfo(loadInfo(city))

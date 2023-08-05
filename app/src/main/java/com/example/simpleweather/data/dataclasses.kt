@@ -18,3 +18,8 @@ data class InfoDetail(
     val label: Int,
     val value: String
 )
+
+data class City(
+    val nameEn: String,
+    val nameUa: String
+)

@@ -5,5 +5,7 @@
         <item name="colorSecondary">@color/gray</item>
         <item name="android:textColorSecondary">@color/white</item>
         <item name="android:windowBackground">@color/black_background</item>
+        <item name="colorAccent">@color/blue</item>
+        <item name="android:textColorHighlight">@color/blue_black</item>
     </style>
 </resources>

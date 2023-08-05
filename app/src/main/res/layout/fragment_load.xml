@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:text="@string/load"
         android:layout_gravity="center_vertical"
-        android:textAppearance="@style/headSecondary"/>
+        android:textAppearance="@style/headSecondary"
+        android:layout_marginStart="16dp"/>
 
 </LinearLayout>

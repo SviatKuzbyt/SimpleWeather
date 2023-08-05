@@ -4,6 +4,11 @@
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
+
+    <style name="citActivityStyle" parent="Base.Theme.SimpleWeather">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
     
     <style name="textToolBarWeather">
         <item name="android:fontFamily">@font/roboto_bold</item>
@@ -33,12 +38,6 @@
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">?android:textColorSecondary</item>
-    </style>
-
-    <style name="textBlue">
-        <item name="android:fontFamily">@font/roboto</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:textColor">?colorPrimary</item>
     </style>
 
     <style name="textSecondary">

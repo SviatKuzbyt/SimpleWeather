@@ -1,5 +1,6 @@
 package com.example.simpleweather.ui.weather
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup.MarginLayoutParams
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.simpleweather.R
+import com.example.simpleweather.ui.cities.CitiesActivity
 import com.example.simpleweather.ui.elements.DetailAdapter
 import com.example.simpleweather.ui.weather.fragments.ErrorFragment
 import com.example.simpleweather.ui.weather.fragments.LoadFragment
@@ -74,6 +76,10 @@ class WeatherActivity : AppCompatActivity() {
             viewModel.loadWeather()
             infoWeatherList.visibility = View.INVISIBLE
             refresh.isRefreshing = false
+        }
+
+        toolBarWeather.setNavigationOnClickListener {
+            startActivity(Intent(this, CitiesActivity::class.java))
         }
 
     }

@@ -14,4 +14,8 @@
     <string name="clouds">Хмарність:</string>
     <string name="rain">Опади:</string>
     <string name="snow">Сніг:</string>
+    <string name="title_activity_cities">CitiesActivity</string>
+    <string name="cities">Міста</string>
+    <string name="about">Розробив Sviat Kuzbyt у серпені 2023\nДані про погоду: openweathermap.org; Іконки: Freepik</string>
+    <string name="add_city">Додати місто</string>
 </resources>

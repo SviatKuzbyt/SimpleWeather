@@ -1,9 +1,9 @@
 package com.example.simpleweather.ui.weather
 
 import android.annotation.SuppressLint
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.simpleweather.data.WeatherInfo
 import com.example.simpleweather.data.repositories.LoadWeather
@@ -16,7 +16,7 @@ sealed class ActivityMode(){
     object Error: ActivityMode()
 }
 
-class WeatherViewModel(application: Application): AndroidViewModel(application) {
+class WeatherViewModel: ViewModel() {
     private val loadWeather = LoadWeather()
     val mode = MutableLiveData<ActivityMode>()
     val city = MutableLiveData<String>()

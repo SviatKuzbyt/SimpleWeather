@@ -1,5 +1,6 @@
 package com.example.simpleweather.ui.elements
 
+import android.annotation.SuppressLint
 import android.widget.Button
 import com.example.simpleweather.data.City
 import android.content.Context
@@ -11,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.simpleweather.R
 import java.util.Locale
 
-class CitiesAdapter(private val dataSet: List<City>, private val context: Context) :
+class CitiesAdapter(private var dataSet: MutableList<City>) :
     RecyclerView.Adapter<CitiesAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -31,10 +32,18 @@ class CitiesAdapter(private val dataSet: List<City>, private val context: Contex
             else dataSet[position].nameEn
 
         viewHolder.deleteBtn.setOnClickListener {
+            dataSet.removeAt(position)
             notifyItemRemoved(position)
             notifyItemRangeChanged(position, itemCount)
         }
     }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun addAll(list: MutableList<City>){
+        dataSet = list
+        notifyDataSetChanged()
+    }
+
     override fun getItemCount() = dataSet.size
 
 }

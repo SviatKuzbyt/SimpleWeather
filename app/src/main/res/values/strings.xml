@@ -18,4 +18,7 @@
     <string name="cities">Міста</string>
     <string name="about">Розробив Sviat Kuzbyt у серпені 2023\nДані про погоду: openweathermap.org; Іконки: Freepik</string>
     <string name="add_city">Додати місто</string>
+    <string name="no_city">Не знайдено міста</string>
+    <string name="searching">Пошук…</string>
+    <string name="add_city_successful">Місто додано</string>
 </resources>

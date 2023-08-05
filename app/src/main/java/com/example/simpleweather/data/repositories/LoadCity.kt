@@ -19,10 +19,10 @@ class LoadCity {
                 } catch (_: Exception){enName}
                 City(enName, uaName)
             }
-            else City("Error", "no found")
+            else City("_", "no found")
 
         } catch (e: Exception){
-            City("Error", "other")
+            City("_", "other")
         }
     }
 }

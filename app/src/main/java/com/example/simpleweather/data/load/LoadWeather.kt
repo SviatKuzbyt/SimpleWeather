@@ -1,7 +1,6 @@
-package com.example.simpleweather.data.repositories
+package com.example.simpleweather.data.load
 
 import com.example.simpleweather.R
-import com.example.simpleweather.data.API_KEY
 import com.example.simpleweather.data.InfoDetail
 import com.example.simpleweather.data.InfoMain
 import com.example.simpleweather.data.WeatherInfo

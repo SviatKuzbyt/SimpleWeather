@@ -1,6 +1,5 @@
-package com.example.simpleweather.data.repositories
+package com.example.simpleweather.data.load
 
-import com.example.simpleweather.data.API_KEY
 import com.example.simpleweather.data.City
 import org.json.JSONArray
 import java.net.URL

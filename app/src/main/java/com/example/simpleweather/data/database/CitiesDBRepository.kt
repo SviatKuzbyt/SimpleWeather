@@ -11,15 +11,23 @@ class CitiesDBRepository(context: Context, test: Boolean = false) {
     else
         CitiesRoom.getInstance(context).dao()
 
-    fun getCities() = dao.getCities()
+    fun getCities(): MutableList<City>{
+        return try {
+            dao.getCities()
+        } catch (e: Exception){
+            mutableListOf(City("DB error","Помилка БД"))
+        }
+    }
 
     fun addCity(city: City){
-        dao.addCity(
-            CityEntity(0, city.nameEn, city.nameUa)
-        )
+        try {
+            dao.addCity( CityEntity(0, city.nameEn, city.nameUa) )
+        } catch (_: Exception){}
     }
 
     fun deleteCity(city: String){
-        dao.delete(city)
+        try {
+            dao.delete(city)
+        } catch (_: Exception){}
     }
 }

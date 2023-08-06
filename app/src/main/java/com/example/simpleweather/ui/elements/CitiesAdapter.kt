@@ -10,9 +10,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simpleweather.R
+import com.example.simpleweather.ui.cities.CitiesViewModel
 import java.util.Locale
 
-class CitiesAdapter(private var dataSet: MutableList<City>) :
+class CitiesAdapter(private var dataSet: MutableList<City>, private val viewModel: CitiesViewModel) :
     RecyclerView.Adapter<CitiesAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -32,6 +33,7 @@ class CitiesAdapter(private var dataSet: MutableList<City>) :
             else dataSet[position].nameEn
 
         viewHolder.deleteBtn.setOnClickListener {
+            viewModel.deleteCity(dataSet[position])
             dataSet.removeAt(position)
             notifyItemRemoved(position)
             notifyItemRangeChanged(position, itemCount)

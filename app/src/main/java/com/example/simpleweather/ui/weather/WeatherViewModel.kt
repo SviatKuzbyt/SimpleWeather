@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.simpleweather.data.WeatherInfo
-import com.example.simpleweather.data.repositories.LoadWeather
+import com.example.simpleweather.data.load.LoadWeather
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

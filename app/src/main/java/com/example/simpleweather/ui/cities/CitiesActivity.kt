@@ -31,13 +31,13 @@ class CitiesActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[CitiesViewModel::class.java]
 
         editTextCity.setOnEditorActionListener{_, _, _ ->
-            makeToast(R.string.searching)
             hideKeyboardFrom(editTextCity)
             viewModel.addCity(editTextCity.text.toString())
+            editTextCity.setText("")
             true
         }
 
-        val recyclerAdapter = CitiesAdapter(mutableListOf())
+        val recyclerAdapter = CitiesAdapter(mutableListOf(), viewModel)
         recyclerCities.layoutManager = LinearLayoutManager(this)
         recyclerCities.adapter = recyclerAdapter
 
@@ -49,17 +49,9 @@ class CitiesActivity : AppCompatActivity() {
         }
 
         viewModel.toastMessage.observe(this){
-            makeToast(it)
+            Toast.makeText(this, getString(it), Toast.LENGTH_SHORT).show()
         }
-
-
-
     }
-
-    private fun makeToast(string: Int){
-        Toast.makeText(this, getString(string), Toast.LENGTH_SHORT).show()
-    }
-
 
     private fun hideKeyboardFrom(view: View) {
         val imm = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager

@@ -1,4 +1,4 @@
-package com.example.simpleweather.data.repositories
+package com.example.simpleweather.data.load
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking

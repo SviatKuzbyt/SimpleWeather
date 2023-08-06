@@ -4,12 +4,12 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.simpleweather.R
 import com.example.simpleweather.data.City
 import com.example.simpleweather.data.database.CitiesDBRepository
-import com.example.simpleweather.data.repositories.LoadCity
+import com.example.simpleweather.data.load.LoadCity
+import com.example.simpleweather.data.repositories.CitiesRepository
 import com.example.simpleweather.ui.elements.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,18 +18,20 @@ class CitiesViewModel(application: Application): AndroidViewModel(application) {
     val citiesList = MutableLiveData<MutableList<City>>()
     val toastMessage = SingleLiveEvent<Int>()
     private val _citiesList = mutableListOf<City>()
-    private val loadCity = LoadCity()
-    val test = CitiesDBRepository(application)
+    private val repository = CitiesRepository(application)
 
-    init {
-        viewModelScope.launch(Dispatchers.IO){
-            test.addCity(City("sadad", "dsada"))
-            Log.v("cityyyy", test.getCities().toString())
+    init { loadCities() }
+
+    private fun loadCities() = viewModelScope.launch(Dispatchers.IO){
+        val cities = repository.getCities()
+        if(cities.isNotEmpty()){
+            _citiesList.addAll(cities)
+            citiesList.postValue(_citiesList)
         }
     }
 
     fun addCity(name: String) = viewModelScope.launch(Dispatchers.IO){
-        val result = loadCity.checkCity(name)
+        val result = repository.addCity(name)
 
         if(result.nameEn != "_"){
             _citiesList.add(result)
@@ -39,4 +41,9 @@ class CitiesViewModel(application: Application): AndroidViewModel(application) {
             toastMessage.postValue(R.string.no_city)
         else toastMessage.postValue(R.string.error)
     }
+
+    fun deleteCity(city: City) = viewModelScope.launch(Dispatchers.IO){
+        repository.deleteCity(city)
+    }
+
 }

@@ -1,20 +1,17 @@
 package com.example.simpleweather.ui.cities
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.simpleweather.R
-import com.example.simpleweather.data.City
-import com.example.simpleweather.data.database.CitiesDBRepository
-import com.example.simpleweather.data.load.LoadCity
-import com.example.simpleweather.data.repositories.CitiesRepository
+import com.example.simpleweather.data.elements.City
+import com.example.simpleweather.data.cities.CitiesRepository
 import com.example.simpleweather.ui.elements.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class CitiesViewModel(application: Application): AndroidViewModel(application) {
+class CitiesViewModel(private val application: Application): AndroidViewModel(application) {
     val citiesList = MutableLiveData<MutableList<City>>()
     val toastMessage = SingleLiveEvent<Int>()
     private val _citiesList = mutableListOf<City>()

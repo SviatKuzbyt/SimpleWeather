@@ -1,5 +1,6 @@
 package com.example.simpleweather.data.load
 
+import com.example.simpleweather.data.cities.LoadCity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext

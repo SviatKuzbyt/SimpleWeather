@@ -1,9 +1,10 @@
-package com.example.simpleweather.data.load
+package com.example.simpleweather.data.weather
 
 import com.example.simpleweather.R
-import com.example.simpleweather.data.InfoDetail
-import com.example.simpleweather.data.InfoMain
-import com.example.simpleweather.data.WeatherInfo
+import com.example.simpleweather.data.elements.InfoDetail
+import com.example.simpleweather.data.elements.InfoMain
+import com.example.simpleweather.data.elements.WeatherInfo
+import com.example.simpleweather.data.elements.API_KEY
 import org.json.JSONObject
 import java.net.URL
 import java.util.Locale

@@ -5,8 +5,8 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.simpleweather.data.WeatherInfo
-import com.example.simpleweather.data.load.LoadWeather
+import com.example.simpleweather.data.elements.WeatherInfo
+import com.example.simpleweather.data.weather.LoadWeather
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

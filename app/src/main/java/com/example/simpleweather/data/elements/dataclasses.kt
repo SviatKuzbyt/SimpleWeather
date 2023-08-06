@@ -1,4 +1,4 @@
-package com.example.simpleweather.data
+package com.example.simpleweather.data.elements
 
 import com.example.simpleweather.R
 

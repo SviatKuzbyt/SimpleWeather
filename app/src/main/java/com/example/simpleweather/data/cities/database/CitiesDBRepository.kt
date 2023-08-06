@@ -1,8 +1,8 @@
-package com.example.simpleweather.data.database
+package com.example.simpleweather.data.cities.database
 
 import android.content.Context
 import androidx.room.Room
-import com.example.simpleweather.data.City
+import com.example.simpleweather.data.elements.City
 
 class CitiesDBRepository(context: Context, test: Boolean = false) {
 

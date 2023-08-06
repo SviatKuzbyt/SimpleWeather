@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simpleweather.R
-import com.example.simpleweather.data.database.CitiesDBRepository
+import com.example.simpleweather.data.cities.database.CitiesDBRepository
 import com.example.simpleweather.ui.elements.CitiesAdapter
 
 class CitiesActivity : AppCompatActivity() {
@@ -37,7 +37,7 @@ class CitiesActivity : AppCompatActivity() {
             true
         }
 
-        val recyclerAdapter = CitiesAdapter(mutableListOf(), viewModel)
+        val recyclerAdapter = CitiesAdapter(mutableListOf(), viewModel, this)
         recyclerCities.layoutManager = LinearLayoutManager(this)
         recyclerCities.adapter = recyclerAdapter
 

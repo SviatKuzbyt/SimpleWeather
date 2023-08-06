@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simpleweather.R
-import com.example.simpleweather.data.InfoDetail
+import com.example.simpleweather.data.elements.InfoDetail
 
 
 class DetailAdapter(private val dataSet: List<InfoDetail>, private val context: Context) :

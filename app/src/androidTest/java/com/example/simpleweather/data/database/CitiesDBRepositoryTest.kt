@@ -1,15 +1,13 @@
 package com.example.simpleweather.data.database
 
 import android.content.Context
-import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import com.example.simpleweather.data.City
+import com.example.simpleweather.data.elements.City
+import com.example.simpleweather.data.cities.database.CitiesDBRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import org.junit.After
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test

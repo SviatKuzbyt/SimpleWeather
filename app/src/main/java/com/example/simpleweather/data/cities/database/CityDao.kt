@@ -1,9 +1,9 @@
-package com.example.simpleweather.data.database
+package com.example.simpleweather.data.cities.database
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.simpleweather.data.City
+import com.example.simpleweather.data.elements.City
 
 @Dao
 interface CityDao {

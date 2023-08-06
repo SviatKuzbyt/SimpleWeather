@@ -1,15 +1,14 @@
-package com.example.simpleweather.data.repositories
+package com.example.simpleweather.data.cities
 
 import android.content.Context
-import com.example.simpleweather.data.City
-import com.example.simpleweather.data.database.CitiesDBRepository
-import com.example.simpleweather.data.load.LoadCity
+import com.example.simpleweather.data.elements.City
+import com.example.simpleweather.data.cities.database.CitiesDBRepository
 
 class CitiesRepository(context: Context) {
     private val dataBase = CitiesDBRepository(context)
     private val loadCity = LoadCity()
 
-    fun addCity(name: String): City{
+    fun addCity(name: String): City {
         val result = loadCity.checkCity(name)
         if(result.nameEn != "_")
             dataBase.addCity(result)

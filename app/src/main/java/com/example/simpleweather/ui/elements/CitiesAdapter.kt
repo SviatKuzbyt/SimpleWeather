@@ -2,18 +2,18 @@ package com.example.simpleweather.ui.elements
 
 import android.annotation.SuppressLint
 import android.widget.Button
-import com.example.simpleweather.data.City
-import android.content.Context
+import com.example.simpleweather.data.elements.City
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simpleweather.R
 import com.example.simpleweather.ui.cities.CitiesViewModel
 import java.util.Locale
 
-class CitiesAdapter(private var dataSet: MutableList<City>, private val viewModel: CitiesViewModel) :
+class CitiesAdapter(private var dataSet: MutableList<City>, private val viewModel: CitiesViewModel, private val activity: AppCompatActivity) :
     RecyclerView.Adapter<CitiesAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -37,6 +37,12 @@ class CitiesAdapter(private var dataSet: MutableList<City>, private val viewMode
             dataSet.removeAt(position)
             notifyItemRemoved(position)
             notifyItemRangeChanged(position, itemCount)
+        }
+
+        viewHolder.itemView.setOnClickListener {
+            ChangeCity.isChanging = true
+            ChangeCity.city = dataSet[position]
+            activity.finish()
         }
     }
 

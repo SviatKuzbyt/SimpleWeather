@@ -1,11 +1,12 @@
-package com.example.simpleweather.data.load
+package com.example.simpleweather.data.cities
 
-import com.example.simpleweather.data.City
+import com.example.simpleweather.data.elements.API_KEY
+import com.example.simpleweather.data.elements.City
 import org.json.JSONArray
 import java.net.URL
 
 class LoadCity {
-    fun checkCity(name: String): City{
+    fun checkCity(name: String): City {
         return try {
             val link = "https://api.openweathermap.org/geo/1.0/direct?q=$name&limit=1&appid=$API_KEY"
             val text = URL(link).readText()

@@ -7,7 +7,7 @@ import java.io.File
 class LastCityFile(context: Context) {
     private val filePath = File(context.filesDir, "lastCity.txt")
 
-    fun write(city: City?) {
+    fun write(city: City) {
         try {
             filePath.writeText(convertToString(city))
         } catch (e: Exception) {
@@ -15,16 +15,13 @@ class LastCityFile(context: Context) {
         }
     }
 
-    private fun convertToString(city: City?): String{
-        return if(city == null) ""
-        else "${city.nameEn}\n${city.nameUa}"
-    }
+    private fun convertToString(city: City) = "${city.nameEn}\n${city.nameUa}"
 
     fun read(): City{
         return try{
             convertToCity(filePath.readText())
         } catch (e: Exception){
-            City("error", "${e.message}; $e")
+            City("", "")
         }
     }
 

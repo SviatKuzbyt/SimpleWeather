@@ -1,6 +1,7 @@
 package com.example.simpleweather.data.weather
 
 import android.content.Context
+import com.example.simpleweather.data.elements.City
 import com.example.simpleweather.ui.elements.ChangeCity
 
 class WeatherRepository(context: Context) {
@@ -11,7 +12,7 @@ class WeatherRepository(context: Context) {
 
     fun getLastCity() = file.read()
 
-    fun setLastCity(){
-        file.write(ChangeCity.city)
+    fun setLastCity(city: City){
+        file.write(city)
     }
 }

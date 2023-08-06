@@ -18,10 +18,13 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.simpleweather.R
 import com.example.simpleweather.ui.cities.CitiesActivity
+import com.example.simpleweather.ui.elements.ChangeCity
 import com.example.simpleweather.ui.elements.DetailAdapter
 import com.example.simpleweather.ui.weather.fragments.ErrorFragment
 import com.example.simpleweather.ui.weather.fragments.LoadFragment
 import com.example.simpleweather.ui.weather.fragments.MainInfoFragment
+import com.example.simpleweather.ui.weather.fragments.NO_CITY_ERROR
+import com.example.simpleweather.ui.weather.fragments.STANDART_ERROR
 
 
 class WeatherActivity : AppCompatActivity() {
@@ -40,13 +43,23 @@ class WeatherActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[WeatherViewModel::class.java]
 
-        viewModel.city.observe(this){
+        viewModel.cityLabel.observe(this){
             toolBarWeather.title = it
         }
 
         viewModel.mode.observe(this){
             when(it){
-                ActivityMode.Error -> postFragment(ErrorFragment())
+                ActivityMode.Error ->{
+                    val fragment = ErrorFragment()
+                    val bundle = Bundle()
+                    bundle.putInt("error",
+                        if(viewModel.cityLabel.value == "") NO_CITY_ERROR
+                        else STANDART_ERROR
+                    )
+                    fragment.arguments = bundle
+                    postFragment(fragment)
+
+                }
                 ActivityMode.Load -> postFragment(LoadFragment())
                 ActivityMode.MainInfo ->{
                     val fragment = MainInfoFragment()
@@ -80,6 +93,15 @@ class WeatherActivity : AppCompatActivity() {
 
         toolBarWeather.setNavigationOnClickListener {
             startActivity(Intent(this, CitiesActivity::class.java))
+        }
+
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        if (ChangeCity.isChanging){
+            ChangeCity.isChanging = false
+            viewModel.setNewCity()
         }
 
     }

@@ -41,7 +41,8 @@
             android:paddingBottom="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolBarWeather" />
+            app:layout_constraintTop_toBottomOf="@+id/toolBarWeather"
+            android:minHeight="104dp"/>
 
         <TextView
             android:id="@+id/textView"

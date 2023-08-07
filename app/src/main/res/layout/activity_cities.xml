@@ -17,7 +17,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/back"
         app:titleTextAppearance="@style/textBold"
-        app:title="@string/cities"/>
+        app:title="@string/cities"
+        app:navigationContentDescription="@string/back"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerCities"

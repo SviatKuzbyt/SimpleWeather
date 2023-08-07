@@ -1,25 +1,24 @@
 <resources>
     <string name="app_name">Simple weather</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="load">Завантаження…</string>
-    <string name="error">Помилка завантаження</string>
-    <string name="error_content">Перевірте з\'єднання з інтернетом або повторіть спробу пізніше</string>
-    <string name="detail">Детальніше</string>
-    <string name="tempFeel">Відчувається як:</string>
-    <string name="windSpeed">Швидкість вітру:</string>
-    <string name="pressure">Тиск:</string>
-    <string name="humidity">Вологість:</string>
-    <string name="visibility">Видимість:</string>
-    <string name="clouds">Хмарність:</string>
-    <string name="rain">Опади:</string>
-    <string name="snow">Сніг:</string>
-    <string name="title_activity_cities">CitiesActivity</string>
-    <string name="cities">Міста</string>
-    <string name="about">Розробив Sviat Kuzbyt у серпені 2023\nДані про погоду: openweathermap.org; Іконки: Freepik</string>
-    <string name="add_city">Додати місто</string>
-    <string name="no_city">Не знайдено міста</string>
-    <string name="searching">Пошук…</string>
-    <string name="add_city_successful">Місто додано</string>
-    <string name="select_city">Не вибрано міста. Перейдіть на сторінку \"Міста\"</string>
+    <string name="load">Downloads…</string>
+    <string name="error">Error loading</string>
+    <string name="error_content">Check your Internet connection or try again later</string>
+    <string name="detail">More details</string>
+    <string name="tempFeel">It feels like:</string>
+    <string name="windSpeed">Wind speed:</string>
+    <string name="pressure">Pressure:</string>
+    <string name="humidity">Humidity:</string>
+    <string name="visibility">Visibility:</string>
+    <string name="clouds">Cloudiness:</string>
+    <string name="rain">Precipitation:</string>
+    <string name="snow">Snow:</string>
+    <string name="cities">Cities</string>
+    <string name="about">Developed by Sviat Kuzbyt in August 2023\nWeather data: openweathermap.org; Icons: Freepik</string>
+    <string name="add_city">Add a city</string>
+    <string name="no_city">No cities found</string>
+    <string name="add_city_successful">City added</string>
+    <string name="select_city">No cities selected. Go to \"Cities\"</string>
+    <string name="back">Back</string>
+    <string name="delete">Delete</string>
 </resources>

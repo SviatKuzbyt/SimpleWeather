@@ -8,7 +8,8 @@
         android:id="@+id/deleteBtn"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:background="@drawable/delete"/>
+        android:background="@drawable/delete"
+        android:contentDescription="@string/delete"/>
     <TextView
         android:id="@+id/textCity"
         android:layout_width="match_parent"

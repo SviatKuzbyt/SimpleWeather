@@ -30,7 +30,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/menu"
-            app:titleTextAppearance="@style/textToolBarWeather" />
+            app:titleTextAppearance="@style/textToolBarWeather"
+            app:navigationContentDescription="@string/cities"/>
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentWeather"

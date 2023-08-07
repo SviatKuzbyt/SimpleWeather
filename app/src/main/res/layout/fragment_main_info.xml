@@ -13,7 +13,8 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAccessibility="no" />
 
     <TextView
         android:id="@+id/textTemp"

@@ -1,5 +1,6 @@
 package com.example.simpleweather.ui.elements
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -9,14 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.simpleweather.R
 import com.example.simpleweather.data.elements.InfoDetail
 
-
-class DetailAdapter(private val dataSet: List<InfoDetail>, private val context: Context) :
+class DetailAdapter(private var dataSet: List<InfoDetail>, private val context: Context) :
     RecyclerView.Adapter<DetailAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val listLabel = view.findViewById<TextView>(R.id.listLabel)
-        val listValue = view.findViewById<TextView>(R.id.listValue)
-
+        val listLabel: TextView = view.findViewById(R.id.listLabel)
+        val listValue: TextView = view.findViewById(R.id.listValue)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -26,12 +25,15 @@ class DetailAdapter(private val dataSet: List<InfoDetail>, private val context: 
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-
         viewHolder.listLabel.text = context.getString(dataSet[position].label)
         viewHolder.listValue.text = dataSet[position].value
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = dataSet.size
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun addAll(list: List<InfoDetail>){
+        dataSet = list
+        notifyDataSetChanged()
+    }
 }

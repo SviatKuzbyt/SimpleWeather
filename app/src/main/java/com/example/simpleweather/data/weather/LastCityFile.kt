@@ -17,11 +17,11 @@ class LastCityFile(context: Context) {
 
     private fun convertToString(city: City) = "${city.nameEn}\n${city.nameUa}"
 
-    fun read(): City{
+    fun read(): City?{
         return try{
             convertToCity(filePath.readText())
         } catch (e: Exception){
-            City("", "")
+            null
         }
     }
 

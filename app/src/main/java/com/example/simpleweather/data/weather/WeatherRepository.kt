@@ -2,7 +2,6 @@ package com.example.simpleweather.data.weather
 
 import android.content.Context
 import com.example.simpleweather.data.elements.City
-import com.example.simpleweather.ui.elements.ChangeCity
 
 class WeatherRepository(context: Context) {
     private val load = LoadWeather()

@@ -24,51 +24,62 @@ import com.example.simpleweather.ui.weather.fragments.ErrorFragment
 import com.example.simpleweather.ui.weather.fragments.LoadFragment
 import com.example.simpleweather.ui.weather.fragments.MainInfoFragment
 import com.example.simpleweather.ui.weather.fragments.NO_CITY_ERROR
-import com.example.simpleweather.ui.weather.fragments.STANDART_ERROR
-
+import com.example.simpleweather.ui.weather.fragments.STANDARD_ERROR
 
 class WeatherActivity : AppCompatActivity() {
-
     private val toolBarWeather: Toolbar by lazy { findViewById(R.id.toolBarWeather) }
     private val infoWeatherList: RecyclerView by lazy { findViewById(R.id.infoWeatherList) }
     private lateinit var viewModel: WeatherViewModel
     private val head: View by lazy { findViewById(R.id.head) }
     private val refresh: SwipeRefreshLayout by lazy { findViewById(R.id.refresh) }
+    private lateinit var recyclerAdapter: DetailAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather)
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        setViewOverlaps(toolBarWeather)
 
         viewModel = ViewModelProvider(this)[WeatherViewModel::class.java]
+        setViews()
+        setData()
+    }
 
-        viewModel.cityLabel.observe(this){
-            toolBarWeather.title = it
+    private fun setViews(){
+        setViewOverlaps(toolBarWeather)
+        toolBarWeather.setNavigationOnClickListener {
+            startActivity(Intent(this, CitiesActivity::class.java))
         }
 
+        refresh.setColorSchemeResources(R.color.blue)
+        refresh.setOnRefreshListener {
+            viewModel.loadWeather()
+            refresh.isRefreshing = false
+        }
+
+        infoWeatherList.layoutManager = LinearLayoutManager(this)
+        recyclerAdapter = DetailAdapter(mutableListOf(), this)
+        infoWeatherList.adapter = recyclerAdapter
+    }
+
+    private fun setData(){
         viewModel.mode.observe(this){
             when(it){
-                ActivityMode.Error ->{
-                    val fragment = ErrorFragment()
-                    val bundle = Bundle()
-                    bundle.putInt("error",
-                        if(viewModel.cityLabel.value == "") NO_CITY_ERROR
-                        else STANDART_ERROR
-                    )
-                    fragment.arguments = bundle
-                    postFragment(fragment)
-
+                ActivityMode.Load ->{
+                    infoWeatherList.visibility = View.INVISIBLE
+                    postFragment(LoadFragment())
                 }
-                ActivityMode.Load -> postFragment(LoadFragment())
+                ActivityMode.Error -> makeErrorFragment(STANDARD_ERROR)
+                ActivityMode.NoCity -> makeErrorFragment(NO_CITY_ERROR)
+
                 ActivityMode.MainInfo ->{
                     val fragment = MainInfoFragment()
-
                     val res = viewModel.weatherInfo!!
-                    val bundle = Bundle()
-                    bundle.putInt("icon", res.main.icon)
-                    bundle.putString("temp", res.main.temp)
-                    bundle.putString("description", res.main.label)
+
+                    val bundle = Bundle().apply {
+                        putInt("icon", res.main.icon)
+                        putString("temp", res.main.temp)
+                        putString("description", res.main.label)
+                    }
 
                     fragment.arguments = bundle
                     postFragment(fragment)
@@ -78,30 +89,30 @@ class WeatherActivity : AppCompatActivity() {
                         else R.drawable.background_cloudy
                     head.setBackgroundResource(background)
 
-                    infoWeatherList.layoutManager = LinearLayoutManager(this)
-                    infoWeatherList.adapter = DetailAdapter(res.detail, this)
+                    recyclerAdapter.addAll(res.detail)
                     infoWeatherList.visibility = View.VISIBLE
                 }
             }
         }
 
-        refresh.setOnRefreshListener {
-            viewModel.loadWeather()
-            infoWeatherList.visibility = View.INVISIBLE
-            refresh.isRefreshing = false
+        viewModel.cityLabel.observe(this){
+            toolBarWeather.title = it
         }
+    }
 
-        toolBarWeather.setNavigationOnClickListener {
-            startActivity(Intent(this, CitiesActivity::class.java))
-        }
-
+    private fun makeErrorFragment(code: Int){
+        val fragment = ErrorFragment()
+        val bundle = Bundle()
+        bundle.putInt("code", code)
+        fragment.arguments = bundle
+        postFragment(fragment)
     }
 
     override fun onRestart() {
         super.onRestart()
         if (ChangeCity.isChanging){
             ChangeCity.isChanging = false
-            viewModel.setNewCity()
+            viewModel.setLastCityAndLoad()
         }
 
     }
@@ -112,7 +123,6 @@ class WeatherActivity : AppCompatActivity() {
         support.setTransition(TRANSIT_FRAGMENT_FADE)
         support.commit()
     }
-
 
     private fun setViewOverlaps(view: View){
         ViewCompat.setOnApplyWindowInsetsListener(view) { v, windowInsets ->

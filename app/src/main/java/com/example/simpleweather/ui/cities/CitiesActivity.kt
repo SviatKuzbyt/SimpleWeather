@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simpleweather.R
-import com.example.simpleweather.data.cities.database.CitiesDBRepository
 import com.example.simpleweather.ui.elements.CitiesAdapter
 
 class CitiesActivity : AppCompatActivity() {
@@ -21,26 +20,34 @@ class CitiesActivity : AppCompatActivity() {
     private val editTextCity: EditText by lazy { findViewById(R.id.editTextCity) }
     private val recyclerCities: RecyclerView by lazy { findViewById(R.id.recyclerCities) }
     private lateinit var viewModel: CitiesViewModel
+    private lateinit var recyclerAdapter: CitiesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cities)
 
-        toolbarCities.setNavigationOnClickListener { finish() }
-
         viewModel = ViewModelProvider(this)[CitiesViewModel::class.java]
+        setViews()
+        setData()
+    }
+
+    private fun setViews(){
+        toolbarCities.setNavigationOnClickListener { finish() }
 
         editTextCity.setOnEditorActionListener{_, _, _ ->
             hideKeyboardFrom(editTextCity)
             viewModel.addCity(editTextCity.text.toString())
             editTextCity.setText("")
+            editTextCity.clearFocus()
             true
         }
 
-        val recyclerAdapter = CitiesAdapter(mutableListOf(), viewModel, this)
+        recyclerAdapter = CitiesAdapter(mutableListOf(), viewModel, this)
         recyclerCities.layoutManager = LinearLayoutManager(this)
         recyclerCities.adapter = recyclerAdapter
+    }
 
+    private fun setData(){
         viewModel.citiesList.observe(this){
             if(recyclerAdapter.itemCount == 0)
                 recyclerAdapter.addAll(it)

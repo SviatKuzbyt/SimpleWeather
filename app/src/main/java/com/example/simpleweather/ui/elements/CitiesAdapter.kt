@@ -17,8 +17,8 @@ class CitiesAdapter(private var dataSet: MutableList<City>, private val viewMode
     RecyclerView.Adapter<CitiesAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val deleteBtn = view.findViewById<Button>(R.id.deleteBtn)
-        val textCity = view.findViewById<TextView>(R.id.textCity)
+        val deleteBtn: Button = view.findViewById(R.id.deleteBtn)
+        val textCity: TextView = view.findViewById(R.id.textCity)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -32,17 +32,17 @@ class CitiesAdapter(private var dataSet: MutableList<City>, private val viewMode
             if(Locale.getDefault().language == "uk") dataSet[position].nameUa
             else dataSet[position].nameEn
 
+        viewHolder.itemView.setOnClickListener {
+            ChangeCity.isChanging = true
+            ChangeCity.city = dataSet[position]
+            activity.finish()
+        }
+
         viewHolder.deleteBtn.setOnClickListener {
             viewModel.deleteCity(dataSet[position])
             dataSet.removeAt(position)
             notifyItemRemoved(position)
             notifyItemRangeChanged(position, itemCount)
-        }
-
-        viewHolder.itemView.setOnClickListener {
-            ChangeCity.isChanging = true
-            ChangeCity.city = dataSet[position]
-            activity.finish()
         }
     }
 
@@ -53,5 +53,4 @@ class CitiesAdapter(private var dataSet: MutableList<City>, private val viewMode
     }
 
     override fun getItemCount() = dataSet.size
-
 }

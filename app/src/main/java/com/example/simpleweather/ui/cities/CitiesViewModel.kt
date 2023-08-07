@@ -11,7 +11,7 @@ import com.example.simpleweather.ui.elements.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class CitiesViewModel(private val application: Application): AndroidViewModel(application) {
+class CitiesViewModel(application: Application): AndroidViewModel(application) {
     val citiesList = MutableLiveData<MutableList<City>>()
     val toastMessage = SingleLiveEvent<Int>()
     private val _citiesList = mutableListOf<City>()
@@ -42,5 +42,4 @@ class CitiesViewModel(private val application: Application): AndroidViewModel(ap
     fun deleteCity(city: City) = viewModelScope.launch(Dispatchers.IO){
         repository.deleteCity(city)
     }
-
 }
